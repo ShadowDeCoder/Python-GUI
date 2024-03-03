@@ -2,7 +2,7 @@ from tkinter import *
 from random import randint
 
 app =Tk()
-app.title("Intro")
+app.title("Random Number Generator")
 app.geometry("500x300")
 Heading = Label(app, text="Generate a Random Number")
 Heading.pack()
