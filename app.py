@@ -1,31 +1,34 @@
 from tkinter import *
-from random import randint
+from random import choice
 
 app = Tk()
 
 app.title("Sample")
 app.geometry("500x300")
-Heading = Label(app, text="Letes Code")
-Heading.pack()
+Heading = Label(app, text="Letes Code", font=("Courier", 12))
+Heading.grid()
 
-email= Entry(app)
-email.pack()
-
-passwd= Entry(app)
-passwd.pack()
+entry = Entry(app)
+entry.grid(row=2, column=0, columnspan=2, padx=20, pady=6)
 
 
 def show():
-    Mail=email.get()
-    Passwd= passwd.get()
+    show =entry.get().split(",")
+    text = 'Choice : '+choice(show)
+    msg = Label(app, text=text, font=("Courier", 12))
+    msg.grid(row=4, column=0,columnspan=2, padx=20, pady=6)
 
-    msg = Label(app,text=Mail)
-    msg.pack()
+    if quit["state"] == DISABLED:
+        quit["state"] = NORMAL
 
 
 
 b = Button(app, text="Enter",command=show)
-b.pack()
+b.grid(row=3, column=0, padx=20, pady=6)
+
+
+quit = Button(app, text=" Close ", command=quit, state= DISABLED)
+quit.grid(row=3, column=1, padx=20, pady=6)
 
 
 app.mainloop()
