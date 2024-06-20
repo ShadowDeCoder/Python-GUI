@@ -15,6 +15,9 @@ entry.grid(row=2, column=0, columnspan=2, padx=20, pady=6)
 
 
 def show():
+    for widget in app.grid_slaves():
+        if int(widget.grid_info()['row']) >= 4:
+            widget.grid_forget()
     show =entry.get().split(",")
     text = 'Choice : '+choice(show)
     msg = Label(app, text=text, font=("Courier", 12), background='pink', foreground='white', relief="raised")
