@@ -2,6 +2,7 @@ import random
 from tkinter import *
 from random import choice
 
+from docutils.nodes import colspec
 
 App = Tk()
 App.title('Element Picker')
@@ -13,6 +14,11 @@ display.grid(row=0, column=2, padx=60, pady=5)
 
 entry = Entry(App,background='gray', foreground='white')
 entry.grid(row=1, column=2, padx=30,pady=10)
+
+num_choise = IntVar()
+chk = Checkbutton(App, text='Double', variable=num_choise, onvalue=2, offvalue=1)
+chk.deselect()
+chk.grid(row=1, column=0, padx= 25, pady= 5)
 
 def choose():
     #here i want to have a code that clear the screen and give the output later
