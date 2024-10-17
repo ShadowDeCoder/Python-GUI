@@ -12,12 +12,13 @@ Heading = Label(app, text="Letes Code",  font=("Courier", 16, 'bold'), bg='#282c
 Heading.grid()
 
 entry = Entry(app, background='lightblue', font=('Arial', 13))
-entry.grid(row=2, column=0, columnspan=2, padx=20, pady=6)
+entry.grid(row=1, column=0, columnspan=2, padx=20, pady=6)
 
-num_choise = IntVar()
-chk = Checkbutton(app, text='Double', variable=num_choise, onvalue=2, offvalue=1, bg='#282c34', fg='cyan', selectcolor='orange', font=('Arial', 12))
-chk.deselect()
-chk.grid(row=1, column=0, padx= 30, pady= 10)
+num_choise = IntVar(value='0')
+rd1 = Radiobutton(app, text='1', variable=num_choise, value=1, bg='#282c34', fg= 'red', font=('bold') )
+rd2 = Radiobutton(app, text='2', variable=num_choise, value=2, bg='#282c34', fg= 'red', font=('bold'))
+rd1.grid(row=2, column=0, padx= 30, pady= 10)
+rd2.grid(row=2, column= 1, padx=30, pady= 10)
 
 
 def show():
@@ -26,16 +27,32 @@ def show():
             widget.grid_forget()
     inp =entry.get().split(",")
 
+    #here i want to check that the inp is null or not if the entry is not given i want to show a msg that give input first and i want to end the function
+    if not inp[0]:
+        msg = Label(app, text='Give input First !!', font=("Courier", 12), background='pink', foreground='black', relief="raised")
+        msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
+        return
+
     if num_choise.get()==2:
+        if len(inp) < 2:
+            msg = Label(app, text='Please provide at least 2 elements!', font=("Courier", 12), background='pink',
+                        foreground='black', relief="raised")
+            msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
+            return
+
         ele = sample(inp, 2)
         text = 'Choice : '+ str(ele[0]+' '+ele[1])
-    else:
+        msg = Label(app, text=text, font=("Courier", 12), background='pink', foreground='black', relief="raised")
+        msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
+    elif num_choise.get()==1:
         text = 'Choice : ' + str(choice(inp))
+        msg = Label(app, text=text, font=("Courier", 12), background='pink', foreground='black', relief="raised")
+        msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
+    elif num_choise.get()==0:
+        msg = Label(app, text='Select Variable' , font=("Courier", 12), background='pink', foreground='black', relief="raised")
+        msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
 
 
-
-    msg = Label(app, text=text, font=("Courier", 12), background='pink', foreground='white', relief="raised")
-    msg.grid(row=4, column=0, columnspan=2, padx=20, pady=6)
 
     if quit["state"] == DISABLED:
         quit["state"] = NORMAL
