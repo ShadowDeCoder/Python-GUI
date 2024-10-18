@@ -12,11 +12,16 @@ rad2 = Radiobutton(app, text='two', variable=choice, value='radiobutton 2 select
 rad2.pack()
 
 def show():
-    msg = Label(app, text=choice.get())
-    msg.pack()
+    msg.config(text=choice.get())
+
+msg = Label(app, text='')
+msg.pack(pady=10)
 
 
 B = Button(app, text='Show', command=show)
 B.pack()
 
+
 app.mainloop()
+
+
